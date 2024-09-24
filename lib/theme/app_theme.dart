@@ -1,6 +1,7 @@
 import 'package:block_testing/theme/dark.dart';
 import 'package:block_testing/theme/light.dart';
 import 'package:block_testing/utility/app_colors.dart';
+import 'package:block_testing/utility/app_style.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme with Light, Dark {
@@ -25,6 +26,9 @@ class AppTheme with Light, Dark {
     secondaryHeaderColor: AppColors.secondaryLight,
     splashColor: AppColors.primaryLight.withOpacity(0.12),
     colorScheme: Light.colorScheme(),
+    appBarTheme: Light.appBar(),
+    buttonTheme: Light.buttonThemeData(),
+    textTheme: AppStyle.textTheme(true),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 
@@ -34,9 +38,10 @@ class AppTheme with Light, Dark {
     primaryColor: AppColors.primaryDark,
     canvasColor: AppColors.onPrimaryDark,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
-    // appBarTheme: Dark.appBar(),
+    appBarTheme: Dark.appBar(),
     colorScheme: Dark.colorScheme(),
     buttonTheme: Dark.buttonThemeData(),
+    textTheme: AppStyle.textTheme(false),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

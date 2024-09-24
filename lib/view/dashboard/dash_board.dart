@@ -10,7 +10,7 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const pages = [HomePage(), AppPage(), HelpPage()];
+    final pages = [HomePage(), AppPage(), HelpPage()];
 
     return Scaffold(
       // appBar: AppBar(
