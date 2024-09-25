@@ -8,6 +8,8 @@ class HomePage extends StatelessWidget {
   final List<String> images = [
     "https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://plus.unsplash.com/premium_photo-1672116453187-3aa64afe04ad?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://media.istockphoto.com/id/1977348709/photo/laughing-young-businesswoman-talking-with-colleagues-in-an-office-hallway.jpg?s=2048x2048&w=is&k=20&c=saM4I2l9GGlJKHAL0ayXMqL4GphBPvuXkCh6qd3yFEU=",
+    "https://plus.unsplash.com/premium_photo-1687382112658-87ba9815f32e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ];
 
   @override
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: Dime.paddingOnly(left: Dime.h1, right: Dime.h1),
+          padding: AppDime.paddingOnly(left: AppDime.h1, right: AppDime.h1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -33,7 +35,7 @@ class HomePage extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: AppStyle.decoration,
-                      height: Dime.h4,
+                      height: AppDime.h4,
                       child: TextFormField(
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -44,43 +46,68 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Dime.w1Box,
+                  AppDime.w1Box,
                   Container(
-                    height: Dime.h4,
-                    width: Dime.h4,
+                    height: AppDime.h4,
+                    width: AppDime.h4,
                     decoration: AppStyle.decoration,
                     child: const Icon(Icons.filter_list),
                   ),
                 ],
               ),
-              Dime.h1Box,
-              SizedBox(
-                height: Dime.h10 * 2,
-                child: images.isNotEmpty
-                    ? PageView.builder(
-                        itemCount: images.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: Dime.padding,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
-                                  image: NetworkImage(images[index]),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      )
-                    : const Center(child: Text("No images available")),
+              AppDime.h1Box,
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 3 / 2,
+                  ),
+                  itemCount: images.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => const Reels(),
+                            ));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: NetworkImage(images[index]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
-              Dime.h1Box,
+              AppDime.h1Box,
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class Reels extends StatelessWidget {
+  const Reels({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(),
+        )
+      ],
+    ));
   }
 }

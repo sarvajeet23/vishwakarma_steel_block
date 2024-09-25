@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Dime {
+class AppDime {
   static double _height = 0.0;
   static double _width = 0.0;
 

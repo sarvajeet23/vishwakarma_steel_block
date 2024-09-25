@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Dime.setScreenDimensions(
+    AppDime.setScreenDimensions(
       MediaQuery.of(context).size.height,
       MediaQuery.of(context).size.width,
     );
