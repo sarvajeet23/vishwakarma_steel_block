@@ -11,6 +11,12 @@ class CommentsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Comments'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notification_add_outlined),
+          )
+        ],
       ),
       body: BlocBuilder<CommentsBloc, CommentsState>(
         builder: (context, state) {
@@ -37,5 +43,14 @@ class CommentsPage extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class Shiboo extends StatelessWidget {
+  const Shiboo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

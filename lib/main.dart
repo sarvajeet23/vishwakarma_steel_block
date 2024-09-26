@@ -1,11 +1,11 @@
 import 'package:block_testing/router/app_routes.dart';
 import 'package:block_testing/router/pages.dart';
-import 'package:block_testing/utility/app_dime.dart';
+import 'package:block_testing/configs/app_dime.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:block_testing/provider/app_bloc_provider.dart';
-import 'package:block_testing/theme/app_theme.dart';
+import 'configs/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());

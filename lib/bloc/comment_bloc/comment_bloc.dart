@@ -1,16 +1,17 @@
 import 'package:bloc/bloc.dart';
-import 'package:block_testing/repositories/product_repository.dart';
 import 'package:block_testing/bloc/comment_bloc/comment_event.dart';
 import 'package:block_testing/bloc/comment_bloc/comment_state.dart';
+import 'package:block_testing/data/repositories/comment_repository.dart';
+
 
 class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
-  final ProductRepository productRepository;
+  final CommentRepository commentRepository;
 
-  CommentsBloc({required this.productRepository}) : super(CommentsInitial()) {
+  CommentsBloc({required this.commentRepository}) : super(CommentsInitial()) {
     on<FetchComments>((event, emit) async {
       emit(CommentsLoading());
       try {
-        final comments = await productRepository.fetchCommentsProducts();
+        final comments = await commentRepository.fetchCommentsProducts();
         emit(CommentsLoaded(comments: comments));
       } catch (e) {
         emit(CommentsError(message: e.toString()));

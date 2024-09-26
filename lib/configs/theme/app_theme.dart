@@ -1,8 +1,9 @@
-import 'package:block_testing/theme/dark.dart';
-import 'package:block_testing/theme/light.dart';
-import 'package:block_testing/utility/app_colors.dart';
-import 'package:block_testing/utility/app_style.dart';
+import 'package:block_testing/configs/app_colors.dart';
+import 'package:block_testing/configs/app_style.dart';
+import 'package:block_testing/configs/theme/dark.dart';
+import 'package:block_testing/configs/theme/light.dart';
 import 'package:flutter/material.dart';
+
 
 class AppTheme with Light, Dark {
   // Light Theme Configuration

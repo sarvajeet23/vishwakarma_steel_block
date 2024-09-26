@@ -1,5 +1,5 @@
-import 'package:block_testing/utility/app_dime.dart';
-import 'package:block_testing/utility/app_style.dart';
+import 'package:block_testing/configs/app_dime.dart';
+import 'package:block_testing/configs/app_style.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

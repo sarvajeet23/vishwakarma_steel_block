@@ -1,4 +1,4 @@
-import 'package:block_testing/models/product.dart';
+import 'package:block_testing/models/product/product.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ProductState extends Equatable {

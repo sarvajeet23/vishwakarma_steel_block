@@ -1,47 +1,52 @@
-import 'dart:developer';
-
+import 'package:block_testing/controller/html_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
 
 class AppPage extends StatelessWidget {
   const AppPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<int> nums = [1, 2, 2, 4, 5, 4];
-    List<int> uniqueNums = [];
-
-    // Remove duplicates manually
-    for (int item in nums) {
-      bool isDuplicate = false;
-      for (int uniqueItem in uniqueNums) {
-        if (item == uniqueItem) {
-          isDuplicate = true;
-          break;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Package Details'),
+      ),
+      body: GetBuilder<HTMLController>(builder: (controller) {
+        if (controller.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (controller.errorMessage.isNotEmpty) {
+          return Center(child: Text(controller.errorMessage));
+        } else {
+          return ListView.builder(
+            itemCount: controller.packages.length,
+            itemBuilder: (context, index) {
+              final package = controller.packages[index];
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('  Inclusions:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Html(data: package.packageInclusions),
+                      const SizedBox(height: 8),
+                      const Text('  Exclusions:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Html(data: package.packageExclusions),
+                      const SizedBox(height: 8),
+                      const Text('  Must Know:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Html(data: package.packageMustKnows),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         }
-      }
-      if (!isDuplicate) {
-        uniqueNums.add(item);
-      }
-    }
-
-    // Sort the list using insertion sort
-    for (int i = 1; i < uniqueNums.length; i++) {
-      int key = uniqueNums[i];
-      int j = i - 1;
-
-      // Move elements that are greater than key to one position ahead
-      while (j >= 0 && uniqueNums[j] > key) {
-        uniqueNums[j + 1] = uniqueNums[j];
-        j = j - 1;
-      }
-      uniqueNums[j + 1] = key;
-    }
-
-    // Log the final sorted list without duplicates
-    log("Final sorted list: ${uniqueNums.toString()}");
-
-    return const Scaffold(
-      body: Center(child: Text("App")),
+      }),
     );
   }
 }

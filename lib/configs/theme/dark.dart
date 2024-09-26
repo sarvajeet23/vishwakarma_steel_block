@@ -1,4 +1,4 @@
-import 'package:block_testing/utility/app_colors.dart';
+import 'package:block_testing/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 
 mixin Dark {

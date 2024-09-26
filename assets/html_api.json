@@ -1,0 +1,74 @@
+{
+    "packages": [
+        {
+            "id": "1",
+            "name": "Package 1",
+            "package_inclusions": "<p>Inclusion 1</p>",
+            "package_exclusions": "<p>Exclusion 1</p>",
+            "package_must_knows": "<p>Must know 1</p>"
+        },
+        {
+            "id": "2",
+            "name": "Package 2",
+            "package_inclusions": "<p>Inclusion 2</p>",
+            "package_exclusions": "<p>Exclusion 2</p>",
+            "package_must_knows": "<p>Must know 2</p>"
+        },
+        {
+            "id": "3",
+            "name": "Package 3",
+            "package_inclusions": "<p>Inclusion 3</p>",
+            "package_exclusions": "<p>Exclusion 3</p>",
+            "package_must_knows": "<p>Must know 3</p>"
+        },
+        {
+            "id": "4",
+            "name": "Package 4",
+            "package_inclusions": "<p>Inclusion 4</p>",
+            "package_exclusions": "<p>Exclusion 4</p>",
+            "package_must_knows": "<p>Must know 4</p>"
+        },
+        {
+            "id": "5",
+            "name": "Package 5",
+            "package_inclusions": "<p>Inclusion 5</p>",
+            "package_exclusions": "<p>Exclusion 5</p>",
+            "package_must_knows": "<p>Must know 5</p>"
+        },
+        {
+            "id": "6",
+            "name": "Package 6",
+            "package_inclusions": "<p>Inclusion 6</p>",
+            "package_exclusions": "<p>Exclusion 6</p>",
+            "package_must_knows": "<p>Must know 6</p>"
+        },
+        {
+            "id": "7",
+            "name": "Package 7",
+            "package_inclusions": "<p>Inclusion 7</p>",
+            "package_exclusions": "<p>Exclusion 7</p>",
+            "package_must_knows": "<p>Must know 7</p>"
+        },
+        {
+            "id": "8",
+            "name": "Package 8",
+            "package_inclusions": "<p>Inclusion 8</p>",
+            "package_exclusions": "<p>Exclusion 8</p>",
+            "package_must_knows": "<p>Must know 8</p>"
+        },
+        {
+            "id": "9",
+            "name": "Package 9",
+            "package_inclusions": "<p>Inclusion 9</p>",
+            "package_exclusions": "<p>Exclusion 9</p>",
+            "package_must_knows": "<p>Must know 9</p>"
+        },
+        {
+            "id": "10",
+            "name": "Package 10",
+            "package_inclusions": "<p>Inclusion 10</p>",
+            "package_exclusions": "<p>Exclusion 10</p>",
+            "package_must_knows": "<p>Must know 10</p>"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
-import 'package:block_testing/utility/mixin/dark_text.dart';
-import 'package:block_testing/utility/mixin/light_text.dart';
+import 'package:block_testing/configs/mixin/dark_text.dart';
+import 'package:block_testing/configs/mixin/light_text.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppStyle with LightText, DarkText {

@@ -1,4 +1,4 @@
-import 'package:block_testing/repositories/product_repository.dart';
+import 'package:block_testing/data/repositories/product_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'product_event.dart';
 import 'product_state.dart';

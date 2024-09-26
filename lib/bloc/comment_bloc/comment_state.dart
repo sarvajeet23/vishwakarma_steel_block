@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:block_testing/models/comments.dart';
+import 'package:block_testing/models/comments/comments.dart';
 
 abstract class CommentsState extends Equatable {
   @override
