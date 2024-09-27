@@ -1,11 +1,11 @@
 import 'package:block_testing/router/app_routes.dart';
 import 'package:block_testing/router/pages.dart';
-import 'package:block_testing/configs/app_dime.dart';
+import 'package:block_testing/core/configs/app_dime.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:block_testing/provider/app_bloc_provider.dart';
-import 'configs/theme/app_theme.dart';
+import 'package:block_testing/controllers/bloc_dependency_injection/app_bloc_provider.dart';
+import 'core/configs/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppDime.setScreenDimensions(
+    Dime.setScreenDimensions(
       MediaQuery.of(context).size.height,
       MediaQuery.of(context).size.width,
     );

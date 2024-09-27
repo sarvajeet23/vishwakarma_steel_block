@@ -2,39 +2,23 @@ import 'package:block_testing/router/app_routes.dart';
 import 'package:get/get.dart';
 
 abstract class RoutesManagements {
-  static void goToHomePage() {
-    Get.to(AppRoutes.shibooPage);
+  static void goToSplashPage() {
+    Get.toNamed(AppRoutes.splashPage);
+  }
+
+  static void goToDashboard() {
+    Get.toNamed(AppRoutes.dashboard);
+  }
+
+  static void goToProductPage() {
+    Get.toNamed(AppRoutes.productPage);
+  }
+
+  static void goToCommentsPage({String? postId}) {
+    Get.toNamed(AppRoutes.commentsPage, arguments: postId);
+  }
+
+  static void goToShibooPage() {
+    Get.toNamed(AppRoutes.shibooPage);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///-------****************--without getX ---****************//
-/*
-abstract class RoutesManagements {
-  static void goToShibooPage(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.shibooPage);
-  }
-
-  static void goToCommentsPage(BuildContext context, {required String postId}) {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.commentsPage,
-      arguments: postId,
-    );
-  }
-}
-*/
-///-------****************--without getX ---****************//
