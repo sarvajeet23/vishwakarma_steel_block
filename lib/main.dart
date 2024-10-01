@@ -1,3 +1,6 @@
+import 'dart:async'; // For runZonedGuarded
+import 'dart:developer';
+import 'package:block_testing/controllers/bloc_dependency_injection/app_repository_provider.dart';
 import 'package:block_testing/router/app_routes.dart';
 import 'package:block_testing/router/pages.dart';
 import 'package:block_testing/core/configs/app_dime.dart';
@@ -6,9 +9,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:block_testing/controllers/bloc_dependency_injection/app_bloc_provider.dart';
 import 'core/configs/theme/app_theme.dart';
+import 'core/services/navigation_service.dart';
 
 void main() {
-  runApp(const MyApp());
+  runZonedGuarded(() {
+    runApp(const MyApp());
+  }, (error, trace) {
+    // Log the error to console or send it to an error reporting service
+    log('Caught an error: $error');
+    log('Stack trace: $trace');
+
+    // Optionally, integrate Firebase Crashlytics or another error service
+    // FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -20,77 +33,20 @@ class MyApp extends StatelessWidget {
       MediaQuery.of(context).size.height,
       MediaQuery.of(context).size.width,
     );
-    return MultiBlocProvider(
-      providers: AppBlocProvider.providers,
-      child: GetMaterialApp(
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        initialRoute: AppRoutes.splashPage,
-        getPages: Pages.pages,
-        debugShowCheckedModeBanner: false,
+    return MultiRepositoryProvider(
+      providers: AppRepositoryProvider.providers,
+      child: MultiBlocProvider(
+        providers: AppBlocProvider.providers,
+        child: GetMaterialApp(
+          navigatorKey: navigatorKey,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
+          initialRoute: AppRoutes.splashPage,
+          getPages: Pages.pages,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetMaterialApp(
-//       home: CounterPage(),
-//     );
-//   }
-// }
-
-// class CounterPage extends StatelessWidget {
-//   // Define a reactive variable for the counter
-//   var counter = 0.obs;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('GetX Counter Example'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             // Obx widget listens to changes in the counter variable
-//             Obx(() => Text(
-//                   'Counter value: ${counter.value}',
-//                   style: const TextStyle(fontSize: 32),
-//                 )),
-//             const SizedBox(height: 20),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 ElevatedButton(
-//                   onPressed: () {
-//                     counter.value++; // Increment the counter
-//                   },
-//                   child: const Text('Increment'),
-//                 ),
-//                 const SizedBox(width: 20),
-//                 ElevatedButton(
-//                   onPressed: () {
-//                     counter.value--; // Decrement the counter
-//                   },
-//                   child: const Text('Decrement'),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

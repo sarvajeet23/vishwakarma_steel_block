@@ -18,7 +18,7 @@ abstract class RoutesManagements {
     Get.toNamed(AppRoutes.commentsPage, arguments: postId);
   }
 
-  static void goToShibooPage() {
-    Get.toNamed(AppRoutes.shibooPage);
+  static void goToMoviePage() {
+    Get.toNamed(AppRoutes.movie);
   }
 }

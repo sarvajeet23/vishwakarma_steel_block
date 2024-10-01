@@ -4,7 +4,7 @@ abstract class AppRoutes {
   static const dashboard = _AppRoutes.dashboard;
   static const productPage = _AppRoutes.productScreen;
   static const commentsPage = _AppRoutes.commentsPage;
-  static const shibooPage = _AppRoutes.shiboo;
+  static const movie = _AppRoutes.movie;
 }
 
 abstract class _AppRoutes {
@@ -13,5 +13,5 @@ abstract class _AppRoutes {
   static const String dashboard = '/dashboard';
   static const String productScreen = '/productScreen';
   static const String commentsPage = '/commentsPage';
-  static const String shiboo = "/shibooPage";
+  static const String movie = "/moviePage";
 }

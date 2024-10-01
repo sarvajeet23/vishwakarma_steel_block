@@ -1,7 +1,7 @@
-import 'package:block_testing/core/configs/app_colors.dart';
-import 'package:block_testing/core/configs/app_style.dart';
-import 'package:block_testing/core/configs/theme/dark.dart';
-import 'package:block_testing/core/configs/theme/light.dart';
+import '/core/configs/app_colors.dart';
+import '/core/configs/app_style.dart';
+import '/core/configs/theme/dark.dart';
+import '/core/configs/theme/light.dart';
 import 'package:flutter/material.dart';
 
 

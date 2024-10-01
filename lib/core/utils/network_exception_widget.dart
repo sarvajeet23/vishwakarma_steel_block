@@ -1,4 +1,3 @@
-// lib/view/network_exception_widget.dart
 import 'package:flutter/material.dart';
 
 class NetworkExceptionWidget extends StatelessWidget {

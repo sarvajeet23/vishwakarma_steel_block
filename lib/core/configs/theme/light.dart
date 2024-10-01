@@ -1,4 +1,4 @@
-import 'package:block_testing/core/configs/app_colors.dart';
+import '/core/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 
 mixin Light {

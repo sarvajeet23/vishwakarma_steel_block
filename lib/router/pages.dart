@@ -1,10 +1,12 @@
 import 'package:block_testing/controllers/getx_dependency_injection/app_page_binding.dart';
-import 'package:block_testing/features/comment/comments_page.dart';
-import 'package:block_testing/features/dashboard/dash_board.dart';
-import 'package:block_testing/features/products/product_screen.dart';
-import 'package:block_testing/features/splash/splash_page.dart';
+import 'package:block_testing/Modules/comment/view/comments_page.dart';
+import 'package:block_testing/Modules/dashboard/dash_board.dart';
+import 'package:block_testing/Modules/products/product_screen.dart';
+import 'package:block_testing/Modules/splash/splash_page.dart';
 import 'package:block_testing/router/app_routes.dart';
 import 'package:get/get.dart';
+
+import '../Modules/movies/movie_search_screen.dart';
 
 abstract class Pages {
   static List<GetPage> pages = [
@@ -27,6 +29,10 @@ abstract class Pages {
     GetPage(
       name: AppRoutes.commentsPage,
       page: () => const CommentsPage(),
+    ),
+    GetPage(
+      name: AppRoutes.movie,
+      page: () => MovieSearchScreen(),
     ),
   ];
 }
