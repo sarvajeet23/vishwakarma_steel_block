@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:block_testing/Modules/products/model/product.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/model/product.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -1,4 +1,4 @@
-import 'package:block_testing/router/routes_managements.dart';
+import 'package:vishwakarama_steel_bloc/router/routes_managements.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,7 @@ class AppPage extends StatelessWidget {
               onPressed: () {
                 RoutesManagements.goToMoviePage();
               },
-              child: Text("Movies"))
+              child: const Text("Movies"))
         ],
       ),
       body: GetBuilder<HTMLController>(builder: (controller) {

@@ -1,5 +1,5 @@
 // controllers/package_controller.dart
-import 'package:block_testing/Modules/app/model/html_model.dart';
+import 'package:vishwakarama_steel_bloc/Modules/app/model/html_model.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';

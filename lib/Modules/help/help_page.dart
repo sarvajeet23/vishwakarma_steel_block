@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:block_testing/core/services/navigation_service.dart';
-import 'package:block_testing/Modules/help/model/person_model.dart';
-import 'package:block_testing/router/routes_managements.dart';
+import 'package:vishwakarama_steel_bloc/core/services/navigation_service.dart';
+import 'package:vishwakarama_steel_bloc/Modules/help/model/person_model.dart';
+import 'package:vishwakarama_steel_bloc/router/routes_managements.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

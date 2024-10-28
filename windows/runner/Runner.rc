@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "block_testing" "\0"
+            VALUE "FileDescription", "vishwakarama_steel_bloc" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "block_testing" "\0"
+            VALUE "InternalName", "vishwakarama_steel_bloc" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "block_testing.exe" "\0"
-            VALUE "ProductName", "block_testing" "\0"
+            VALUE "OriginalFilename", "vishwakarama_steel_bloc.exe" "\0"
+            VALUE "ProductName", "vishwakarama_steel_bloc" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

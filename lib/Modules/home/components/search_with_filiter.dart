@@ -1,5 +1,5 @@
-import 'package:block_testing/core/configs/app_dime.dart';
-import 'package:block_testing/core/configs/app_style.dart';
+import 'package:vishwakarama_steel_bloc/core/configs/app_dime.dart';
+import 'package:vishwakarama_steel_bloc/core/configs/app_style.dart';
 import 'package:flutter/material.dart';
 
 class SearchWithFiliter extends StatelessWidget {
@@ -14,7 +14,7 @@ class SearchWithFiliter extends StatelessWidget {
         Expanded(
           child: Container(
             decoration: AppStyle.decoration,
-            height: Dime.h4,
+            height: Dime.h10,
             child: TextFormField(
               decoration: const InputDecoration(
                 border: InputBorder.none,
@@ -27,8 +27,8 @@ class SearchWithFiliter extends StatelessWidget {
         ),
         Dime.w1Box,
         Container(
-          height: Dime.h4,
-          width: Dime.h4,
+          height: Dime.h10,
+          width: Dime.h10,
           decoration: AppStyle.decoration,
           child: const Icon(Icons.filter_list),
         ),

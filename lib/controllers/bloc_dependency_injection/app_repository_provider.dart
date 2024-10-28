@@ -1,5 +1,5 @@
-import 'package:block_testing/Modules/comment/client/comment_repository.dart';
-import 'package:block_testing/Modules/products/client/product_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/comment/client/comment_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/client/product_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class AppRepositoryProvider {

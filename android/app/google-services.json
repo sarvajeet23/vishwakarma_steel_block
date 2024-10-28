@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "26529754310",
+    "project_id": "vishwakarama-steel",
+    "storage_bucket": "vishwakarama-steel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26529754310:android:4d47a603c24a0a40427bc7",
+        "android_client_info": {
+          "package_name": "com.vishwakarma.steel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD78V18XE8cW_lECrnGduU2XO-zoTDffS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

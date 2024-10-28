@@ -1,4 +1,4 @@
-import 'package:block_testing/Modules/products/model/product.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/model/product.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ProductState extends Equatable {

@@ -1,7 +1,8 @@
-import 'package:block_testing/core/configs/app_dime.dart';
-import 'package:block_testing/Modules/home/components/image_with_indicator.dart';
-import 'package:block_testing/Modules/home/components/search_with_filiter.dart';
-import 'package:block_testing/Modules/home/components/title_with_label.dart';
+import 'package:get/get.dart';
+import 'package:vishwakarama_steel_bloc/core/configs/app_dime.dart';
+import 'package:vishwakarama_steel_bloc/Modules/home/components/image_with_indicator.dart';
+import 'package:vishwakarama_steel_bloc/Modules/home/components/search_with_filiter.dart';
+import 'package:vishwakarama_steel_bloc/Modules/home/components/title_with_label.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -24,9 +25,20 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Good Morning",
-                style: textTheme.displayLarge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Good Morning",
+                    style: textTheme.displayLarge,
+                  ),
+                  InkWell(
+                    onTap: () => Get.back(),
+                    child: const CircleAvatar(
+                      radius: 25,
+                    ),
+                  )
+                ],
               ),
               Text(
                 "Welcome Back",
@@ -35,6 +47,7 @@ class HomePage extends StatelessWidget {
               const SearchWithFiliter(),
               Dime.h1Box,
               const ImageWithIndicator(),
+              Dime.h5Box,
               const TitleWithLabel(),
               SizedBox(
                 height: Dime.h10,
@@ -95,12 +108,14 @@ class Reels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Container(
-          decoration: const BoxDecoration(),
-        )
-      ],
-    ));
+        appBar: AppBar(),
+        body: Stack(
+          children: [
+            Positioned.fill(
+              bottom: 50,
+              child: Text("data"),
+            )
+          ],
+        ));
   }
 }

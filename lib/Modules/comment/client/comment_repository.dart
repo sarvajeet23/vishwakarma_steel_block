@@ -1,15 +1,20 @@
-import 'dart:convert';
+import 'dart:developer';
+import 'package:dio/dio.dart';
 import '../model/comments.dart';
-import 'package:http/http.dart' as http;
 import '../../../data/api/const_api.dart';
 
 class CommentRepository {
+  final Dio _dio = Dio();
+
   Future<List<Comments>> fetchCommentsProducts() async {
     try {
-      final response = await http.get(Uri.parse(ConstApi.commentsUrl));
+      final response = await _dio.get(ConstApi.commentsUrl);
 
       if (response.statusCode == 200) {
-        final jsonData = jsonDecode(response.body);
+        final jsonData = response.data;
+
+        log("Product Response::$jsonData");
+
         return (jsonData as List)
             .map((jsonComment) => Comments.fromJson(jsonComment))
             .toList();

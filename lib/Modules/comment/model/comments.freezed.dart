@@ -20,6 +20,7 @@ Comments _$CommentsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Comments {
+//@Default() is use to set default value. like null check soluction.
   int? get postId => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -148,12 +149,14 @@ class __$$CommentsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CommentsImpl implements _Comments {
-  _$CommentsImpl({this.postId, this.id, this.name, this.email, this.body});
+  _$CommentsImpl({this.postId = 0, this.id, this.name, this.email, this.body});
 
   factory _$CommentsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentsImplFromJson(json);
 
+//@Default() is use to set default value. like null check soluction.
   @override
+  @JsonKey()
   final int? postId;
   @override
   final int? id;
@@ -212,6 +215,7 @@ abstract class _Comments implements Comments {
   factory _Comments.fromJson(Map<String, dynamic> json) =
       _$CommentsImpl.fromJson;
 
+//@Default() is use to set default value. like null check soluction.
   @override
   int? get postId;
   @override

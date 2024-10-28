@@ -1,4 +1,4 @@
-import 'package:block_testing/Modules/products/client/product_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/client/product_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'product_event.dart';
 import 'product_state.dart';

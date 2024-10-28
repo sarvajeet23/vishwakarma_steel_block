@@ -1,10 +1,6 @@
-import 'package:equatable/equatable.dart';
+part of 'comment_bloc.dart';
 
-abstract class CommentsEvent extends Equatable {
-  const CommentsEvent();
-
-  @override
-  List<Object?> get props => [];
+@freezed
+class CommentEvent with _$CommentEvent {
+  const factory CommentEvent.fetchData() = FetchData;
 }
-
-class FetchComments extends CommentsEvent {}

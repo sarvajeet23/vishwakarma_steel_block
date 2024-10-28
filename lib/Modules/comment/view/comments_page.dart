@@ -1,5 +1,4 @@
-import 'package:block_testing/Modules/comment/bloc/comment_bloc.dart';
-import 'package:block_testing/Modules/comment/bloc/comment_state.dart';
+import 'package:vishwakarama_steel_bloc/Modules/comment/bloc/comment_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,32 +17,27 @@ class CommentsPage extends StatelessWidget {
           )
         ],
       ),
-      body: BlocBuilder<CommentsBloc, CommentsState>(
-        builder: (context, state) {
-          if (state is CommentsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is CommentsLoaded) {
-            return ListView.builder(
-              itemCount: state.comments.length,
-              itemBuilder: (context, index) {
-                final comment = state.comments[index];
-                return ListTile(
-                  title: Text(comment.name ?? 'No name'),
-                  subtitle: Text(comment.body ?? 'No body'),
-                  isThreeLine: true,
-                  trailing: Text(comment.email ?? 'No email'),
-                );
-              },
-            );
-          } else if (state is CommentsError) {
-            return Center(child: Text('Error: ${state.message}'));
-          } else {
-            return const Center(child: Text('No comments found'));
-          }
-        },
-      ),
+      body: BlocBuilder<CommentBloc, CommentState>(builder: (context, state) {
+        return state.when(
+            initial: () => const Text("initial state"),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            loaded: (comments) => ListView.builder(
+                itemCount: comments.length,
+                itemBuilder: (context, index) {
+                  final comment = comments[index];
+                  return ListTile(
+                    onTap: () {
+                      // Navigate to the comment details page
+                      Navigator.pushNamed(context, '/comment/${comment.id}');
+                    },
+                    title: Text(comment.name ?? 'No name'),
+                    subtitle: Text(comment.body ?? 'No body'),
+                    isThreeLine: true,
+                    trailing: Text(comment.email ?? 'No email'),
+                  );
+                }),
+            error: (message) => Text("Error::$message"));
+      }),
     );
   }
 }
-
-

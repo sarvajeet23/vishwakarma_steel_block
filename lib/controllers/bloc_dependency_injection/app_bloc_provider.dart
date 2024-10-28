@@ -1,11 +1,12 @@
-import 'package:block_testing/Modules/dashboard/bloc/dash_board_bloc.dart';
-import 'package:block_testing/Modules/comment/client/comment_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:block_testing/Modules/products/bloc/product_bloc.dart';
-import 'package:block_testing/Modules/products/bloc/product_event.dart';
-import 'package:block_testing/Modules/comment/bloc/comment_bloc.dart';
-import 'package:block_testing/Modules/comment/bloc/comment_event.dart';
-import 'package:block_testing/Modules/products/client/product_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/dashboard/bloc/dash_board_bloc.dart';
+import 'package:vishwakarama_steel_bloc/Modules/comment/client/comment_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/home/bloc/home_page_bloc.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_bloc.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/client/product_repository.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_event.dart';
+import 'package:vishwakarama_steel_bloc/Modules/comment/bloc/comment_bloc.dart';
+import '../../Modules/home/bloc/home_page_event.dart';
 
 abstract class AppBlocProvider {
   static List<BlocProvider> providers = [
@@ -14,13 +15,16 @@ abstract class AppBlocProvider {
         productRepository: RepositoryProvider.of<ProductRepository>(context),
       )..add(FetchProducts()),
     ),
-    BlocProvider<CommentsBloc>(
-      create: (context) => CommentsBloc(
-        commentRepository: RepositoryProvider.of<CommentRepository>(context),
-      )..add(FetchComments()),
+    BlocProvider<CommentBloc>(
+      create: (context) => CommentBloc(
+        RepositoryProvider.of<CommentRepository>(context), // No named parameter
+      )..add(const CommentEvent.fetchData()),
     ),
     BlocProvider<DashBoardBloc>(
       create: (context) => DashBoardBloc(),
+    ),
+    BlocProvider<HomePageBloc>(
+      create: (context) => HomePageBloc()..add(const HomePageEvent.fetchData()),
     ),
   ];
 }

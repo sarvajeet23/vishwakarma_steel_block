@@ -1,5 +1,5 @@
-import 'package:block_testing/core/configs/app_colors.dart';
-import 'package:block_testing/core/configs/app_dime.dart';
+import 'package:vishwakarama_steel_bloc/core/configs/app_colors.dart';
+import 'package:vishwakarama_steel_bloc/core/configs/app_dime.dart';
 import 'package:flutter/material.dart';
 
 class ImageWithIndicator extends StatelessWidget {

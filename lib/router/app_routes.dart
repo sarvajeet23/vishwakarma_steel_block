@@ -1,5 +1,7 @@
 abstract class AppRoutes {
   static const splashPage = _AppRoutes.splashPage;
+  static const loginPage = _AppRoutes.loginPage;
+  static const singUpPage = _AppRoutes.singUpPage;
 
   static const dashboard = _AppRoutes.dashboard;
   static const productPage = _AppRoutes.productScreen;
@@ -9,6 +11,8 @@ abstract class AppRoutes {
 
 abstract class _AppRoutes {
   static const String splashPage = '/splashPage';
+  static const String loginPage = '/loginPage';
+  static const String singUpPage = '/singUpPage';
 
   static const String dashboard = '/dashboard';
   static const String productScreen = '/productScreen';

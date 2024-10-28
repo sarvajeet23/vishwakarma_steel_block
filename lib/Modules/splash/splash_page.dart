@@ -1,11 +1,10 @@
-import 'package:block_testing/router/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:vishwakarama_steel_bloc/router/routes_managements.dart';
 
 class SplashPage extends StatelessWidget {
   SplashPage({super.key}) {
     Future.delayed(
-        const Duration(seconds: 3), () => Get.offNamed(AppRoutes.dashboard));
+        const Duration(seconds: 3), () => RoutesManagements.goToLoginPage());
   }
 
   @override

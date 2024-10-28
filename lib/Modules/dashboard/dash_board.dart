@@ -1,7 +1,7 @@
-import 'package:block_testing/Modules/dashboard/bloc/dash_board_bloc.dart';
-import 'package:block_testing/Modules/app/app_page.dart';
-import 'package:block_testing/Modules/help/help_page.dart';
-import 'package:block_testing/Modules/home/home_page.dart';
+import 'package:vishwakarama_steel_bloc/Modules/dashboard/bloc/dash_board_bloc.dart';
+import 'package:vishwakarama_steel_bloc/Modules/app/app_page.dart';
+import 'package:vishwakarama_steel_bloc/Modules/help/help_page.dart';
+import 'package:vishwakarama_steel_bloc/Modules/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

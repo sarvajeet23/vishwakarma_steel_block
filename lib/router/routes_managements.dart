@@ -1,9 +1,17 @@
-import 'package:block_testing/router/app_routes.dart';
+import 'package:vishwakarama_steel_bloc/router/app_routes.dart';
 import 'package:get/get.dart';
 
 abstract class RoutesManagements {
   static void goToSplashPage() {
     Get.toNamed(AppRoutes.splashPage);
+  }
+
+  static void goToLoginPage() {
+    Get.toNamed(AppRoutes.loginPage);
+  }
+
+  static void goToSingUpPage() {
+    Get.toNamed(AppRoutes.singUpPage);
   }
 
   static void goToDashboard() {
