@@ -27,6 +27,6 @@ abstract class RoutesManagements {
   }
 
   static void goToMoviePage() {
-    Get.toNamed(AppRoutes.movie);
+    Get.toNamed(AppRoutes.computerPart);
   }
 }

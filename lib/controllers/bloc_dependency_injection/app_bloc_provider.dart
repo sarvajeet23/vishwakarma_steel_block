@@ -4,7 +4,6 @@ import 'package:vishwakarama_steel_bloc/Modules/comment/client/comment_repositor
 import 'package:vishwakarama_steel_bloc/Modules/home/bloc/home_page_bloc.dart';
 import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_bloc.dart';
 import 'package:vishwakarama_steel_bloc/Modules/products/client/product_repository.dart';
-import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_event.dart';
 import 'package:vishwakarama_steel_bloc/Modules/comment/bloc/comment_bloc.dart';
 import '../../Modules/home/bloc/home_page_event.dart';
 
@@ -12,8 +11,8 @@ abstract class AppBlocProvider {
   static List<BlocProvider> providers = [
     BlocProvider<ProductBloc>(
       create: (context) => ProductBloc(
-        productRepository: RepositoryProvider.of<ProductRepository>(context),
-      )..add(FetchProducts()),
+        RepositoryProvider.of<ProductRepository>(context),
+      )..add(const ProductEvent.fetchData()),
     ),
     BlocProvider<CommentBloc>(
       create: (context) => CommentBloc(

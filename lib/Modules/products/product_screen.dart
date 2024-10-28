@@ -1,8 +1,7 @@
-import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_bloc.dart';
-import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:vishwakarama_steel_bloc/Modules/products/bloc/product_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -27,23 +26,25 @@ class ProductScreen extends StatelessWidget {
       ),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
-          if (state is ProductLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is ProductLoaded) {
-            return ListView.builder(
-              itemCount: state.products.length,
-              itemBuilder: (context, index) {
-                final product = state.products[index];
-                return ListTile(
-                  title: Text(product.title ?? 'title'),
-                  subtitle: Text(product.body ?? 'body'),
-                );
-              },
-            );
-          } else if (state is ProductError) {
-            return Center(child: Text(state.message));
-          }
-          return const Center(child: CircularProgressIndicator());
+          return state.when(
+            initial: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(
+                child: CircularProgressIndicator()), 
+            loaded: (products) {
+              return ListView.builder(
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ListTile(
+                    leading: CircleAvatar(child: Text(product.id.toString())),
+                    title: Text(product.title ?? 'Title'),
+                    subtitle: Text('Price: ${product.body ?? "N/A"}'),
+                  );
+                },
+              );
+            },
+            error: (message) => Center(child: Text("Error: $message")),
+          );
         },
       ),
     );

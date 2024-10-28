@@ -4,7 +4,6 @@ import '/core/configs/theme/dark.dart';
 import '/core/configs/theme/light.dart';
 import 'package:flutter/material.dart';
 
-
 class AppTheme with Light, Dark {
   // Light Theme Configuration
   static final lightTheme = ThemeData(

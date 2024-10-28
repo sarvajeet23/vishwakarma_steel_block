@@ -22,7 +22,7 @@ mixin Light {
 
   static ButtonThemeData buttonThemeData() {
     return const ButtonThemeData(
-      buttonColor: Colors.black,
+      buttonColor: AppColors.primaryLight,
       textTheme: ButtonTextTheme.primary,
     );
   }

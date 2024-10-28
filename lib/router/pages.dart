@@ -10,7 +10,7 @@ import 'package:vishwakarama_steel_bloc/Modules/splash/splash_page.dart';
 import 'package:vishwakarama_steel_bloc/router/app_routes.dart';
 import 'package:get/get.dart';
 
-import '../Modules/movies/movie_search_screen.dart';
+import '../Modules/computer_part_page.dart/computer_part_page.dart';
 
 abstract class Pages {
   static List<GetPage> pages = [
@@ -48,8 +48,8 @@ abstract class Pages {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: AppRoutes.movie,
-      page: () => const MovieSearchScreen(),
+      name: AppRoutes.computerPart,
+      page: () => const ComputerPartPage(),
     ),
   ];
 }

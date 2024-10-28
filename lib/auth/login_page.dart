@@ -59,8 +59,8 @@ class LoginPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: controller.goToDashboard,
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
+                    // backgroundColor: Colors.blue,
+                    // foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     )),
