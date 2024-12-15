@@ -1,36 +1,79 @@
-name: Flutter CI Pipeline
+name: "Build & Release"
 
 on:
-  push:
-    branches:
-      - main  # Trigger on push to the main branch
   pull_request:
     branches:
-      - main  # Trigger on pull requests to the main branch
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build_android:
+    name: Build Android APK
+    runs-on: windows-latest  # Windows runner for Android build
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      # Step 2: Set up Flutter
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      # Set up Java (required for Flutter builds)
+      - uses: actions/setup-java@v3
         with:
-          flutter-version: '3.13.0'  # Specify your Flutter version
+          distribution: 'zulu'
+          java-version: '12'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: flutter pub get
+      # Set up Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
 
-      # Step 4: Run Flutter analyzer
-      - name: Analyze code
-        run: flutter analyze
+      # Build Android APK
+      - run: flutter build apk --release --split-per-abi
 
-      # Step 5: Run Flutter tests
-      - name: Run tests
-        run: flutter test
+      # Upload Android APK to GitHub Releases
+      - name: Push Android APK to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}  # Correct way to reference secrets
+
+  build_ios:
+    name: Build iOS IPA
+    runs-on: macos-latest  # macOS runner for iOS build
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Set up Java (required for Flutter builds)
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '12'
+
+      # Set up Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      # Build iOS IPA
+      - run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+
+      # Upload iOS IPA to GitHub Releases
+      - name: Push iOS IPA to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/ios/iphoneos/app.ipa"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}  # Correct way to reference secrets
