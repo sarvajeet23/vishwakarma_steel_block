@@ -1,30 +1,25 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:vishwakarama_steel_bloc/auth/login_page.dart';
 import 'package:vishwakarama_steel_bloc/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  testWidgets('Splash Page smoke test', (WidgetTester tester) async {
+    // Build the app and trigger a frame
+    await tester.pumpWidget(const MyApp()); // Replace with your app widget
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Wait for the first frame to render
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Optionally, check that no "Loading..." text is found (if you're not using this text)
+    expect(find.text('Loading...'), findsNothing);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Wait for the Future.delayed (which triggers the navigation) to complete
+    await tester.pumpAndSettle(const Duration(
+        seconds: 3)); // Adjust duration to match your splash delay
+
+    // Optionally, check that the app has navigated to the login page
+    expect(find.byType(LoginPage),
+        findsOneWidget); // Ensure LoginPage is now displayed
   });
 }

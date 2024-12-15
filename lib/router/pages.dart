@@ -21,13 +21,13 @@ abstract class Pages {
     ),
     GetPage(
       name: AppRoutes.loginPage,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
       binding: BindingsBuilder.put(() => LoginController()),
       transition: Transition.fade,
     ),
     GetPage(
       name: AppRoutes.singUpPage,
-      page: () => SingUpPage(),
+      page: () => const SingUpPage(),
       binding: BindingsBuilder.put(() => SingUpController()),
       transition: Transition.fade,
     ),
