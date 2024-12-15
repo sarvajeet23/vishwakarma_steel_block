@@ -35,14 +35,14 @@ android {
             // Signing config for the release build
             signingConfig = signingConfigs.debug
 
-            // Enable code minification with R8 (or Proguard)
-            minifyEnabled true
+            // // Enable code minification with R8 (or Proguard)
+            // minifyEnabled true
 
-            // Enable resource shrinking (removes unused resources)
-            shrinkResources true
+            // // Enable resource shrinking (removes unused resources)
+            // shrinkResources true
 
-            // Specify ProGuard rules if necessary
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // // Specify ProGuard rules if necessary
+            // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
