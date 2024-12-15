@@ -52,4 +52,3 @@ class TitleWithLabel extends StatelessWidget {
     );
   }
 }
-

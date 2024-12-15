@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vishwakarama_steel_bloc/Modules/tab_bar_page.dart/arrow_tab_page.dart';
 import 'package:vishwakarama_steel_bloc/core/configs/app_dime.dart';
 import 'package:vishwakarama_steel_bloc/Modules/home/components/image_with_indicator.dart';
 import 'package:vishwakarama_steel_bloc/Modules/home/components/search_with_filiter.dart';
@@ -46,7 +47,10 @@ class HomePage extends StatelessWidget {
               ),
               const SearchWithFiliter(),
               Dime.h1Box,
-              const ImageWithIndicator(),
+              ImageWithIndicator(
+                height: Dime.h10 * 5,
+                image: images,
+              ),
               Dime.h5Box,
               const TitleWithLabel(),
               SizedBox(
@@ -61,7 +65,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Dime.h1Box,
+              Dime.hBox,
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,7 +81,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => const Reels(),
+                              builder: (BuildContext context) => const CustomTabBarPage(),
                             ));
                       },
                       child: Container(
@@ -109,7 +113,7 @@ class Reels extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body: Stack(
+        body: const Stack(
           children: [
             Positioned.fill(
               bottom: 50,

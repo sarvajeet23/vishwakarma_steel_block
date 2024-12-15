@@ -221,6 +221,9 @@ class Dime {
   static EdgeInsets get marginExtraSmall => EdgeInsets.all(hScreen * 0.008);
 
   // Shortcut methods for h1 to h10 as SizedBox
+  static SizedBox get hBox => SizedBox(height: h0);
+
+  static SizedBox get h0Box => SizedBox(height: h0);
   static SizedBox get h1Box => SizedBox(height: h1);
   static SizedBox get h2Box => SizedBox(height: h2);
   static SizedBox get h3Box => SizedBox(height: h3);
