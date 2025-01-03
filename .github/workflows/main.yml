@@ -54,26 +54,33 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v3
 
-      # Install Flutter manually for macOS
-      - name: Install Flutter
-        run: |
-          git clone https://github.com/flutter/flutter.git -b stable
-          echo "$PWD/flutter/bin" >> $GITHUB_PATH
-          export PATH="$PWD/flutter/bin:$PATH"  # Ensure flutter is in PATH
-          flutter doctor
+      # Set up Flutter (using subosito for macOS)
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
 
       # Install CocoaPods for iOS dependencies
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
+          pod --version
           if [ ! -f ios/Podfile ]; then
-            flutter create . --org com.vishwakarma.steel
+            echo "platform :ios, '12.0'" > ios/Podfile
           fi
           cd ios && pod install && cd ..
 
       # Install dependencies
       - name: Install dependencies
         run: flutter pub get
+
+      # Flutter Doctor to check for any missing dependencies
+      - name: Flutter Doctor
+        run: flutter doctor
+
+      # Clear Xcode Derived Data to prevent issues
+      - name: Clear Derived Data
+        run: |
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
       # Build the IPA file
       - name: Build IPA
