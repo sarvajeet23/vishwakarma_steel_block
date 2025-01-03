@@ -1,10 +1,12 @@
-import 'package:get/get.dart';
-import 'package:vishwakarama_steel_bloc/Modules/tab_bar_page.dart/arrow_tab_page.dart';
-import 'package:vishwakarama_steel_bloc/core/configs/app_dime.dart';
-import 'package:vishwakarama_steel_bloc/Modules/home/components/image_with_indicator.dart';
-import 'package:vishwakarama_steel_bloc/Modules/home/components/search_with_filiter.dart';
-import 'package:vishwakarama_steel_bloc/Modules/home/components/title_with_label.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+
+import '../../core/configs/app_dime.dart';
+import '../tab_bar_page.dart/arrow_tab_page.dart';
+import 'components/image_with_indicator.dart';
+import 'components/search_with_filiter.dart';
+import 'components/title_with_label.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -19,55 +21,65 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
+      // backgroundColor: Colors.yellow,
       body: SafeArea(
         child: Padding(
-          padding: Dime.paddingOnly(left: Dime.h1, right: Dime.h1),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Good Morning",
-                    style: textTheme.displayLarge,
-                  ),
-                  InkWell(
-                    onTap: () => Get.back(),
-                    child: const CircleAvatar(
-                      radius: 25,
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                "Welcome Back",
-                style: textTheme.bodySmall,
-              ),
-              const SearchWithFiliter(),
-              Dime.h1Box,
-              ImageWithIndicator(
-                height: Dime.h10 * 5,
-                image: images,
-              ),
-              Dime.h5Box,
-              const TitleWithLabel(),
-              SizedBox(
-                height: Dime.h10,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+          padding:
+              Dime.paddingOnly(left: Dime.h1, right: Dime.h1, top: Dime.h2),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(Dime.h1)),
+                    Text(
+                      "Good Morning", // Use localization
+                      style: textTheme.bodyLarge,
                     ),
+                    InkWell(
+                      onTap: () => Get.back(),
+                      child: const CircleAvatar(radius: 25),
+                    )
                   ],
                 ),
-              ),
-              Dime.hBox,
-              Expanded(
-                child: GridView.builder(
+                Text("Welcome Back", style: textTheme.bodySmall),
+                const SearchWithFiliter(),
+                Dime.h1Box,
+                ImageWithIndicator(
+                  height: Dime.h10 * 5,
+                  image: images,
+                ),
+                Dime.h5Box,
+                const TitleWithLabel(),
+                Dime.h5Box,
+                SizedBox(
+                  height: Dime.h10 * 3,
+                  width: Dime.wScreen,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: images.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.symmetric(horizontal: Dime.h1 / 2),
+                        width: Dime.h10,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dime.h1),
+                          image: DecorationImage(
+                            image: NetworkImage(images[index]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Dime.h5Box,
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
@@ -79,10 +91,12 @@ class HomePage extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => const CustomTabBarPage(),
-                            ));
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const CustomTabBarPage(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -96,30 +110,12 @@ class HomePage extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-              Dime.h1Box,
-            ],
+                Dime.h1Box,
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-}
-
-class Reels extends StatelessWidget {
-  const Reels({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: const Stack(
-          children: [
-            Positioned.fill(
-              bottom: 50,
-              child: Text("data"),
-            )
-          ],
-        ));
   }
 }

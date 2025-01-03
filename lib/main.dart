@@ -13,10 +13,29 @@ import 'core/services/navigation_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e, s) {
+    debugPrint('Firebase initialization failed: $e+$s');
+  }
+
+  runApp(
+    MaterialApp(
+      home: Builder(
+        builder: (context) {
+          Dime.init(
+            MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.width,
+          );
+          return const MyApp();
+        },
+      ),
+      debugShowCheckedModeBanner: false,
+    ),
   );
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,19 +43,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Dime.init(
-      MediaQuery.of(context).size.height,
-      MediaQuery.of(context).size.width,
-    );
     return MultiRepositoryProvider(
       providers: AppRepositoryProvider.providers,
       child: MultiBlocProvider(
         providers: AppBlocProvider.providers,
         child: GetMaterialApp(
           navigatorKey: navigatorKey,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
+          // theme: AppTheme.lightTheme,
+          // darkTheme: AppTheme.darkTheme,
+          // themeMode: ThemeMode.system,
           initialRoute: AppRoutes.splashPage,
           getPages: Pages.pages,
           debugShowCheckedModeBanner: false,
