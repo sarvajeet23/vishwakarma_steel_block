@@ -68,6 +68,9 @@ jobs:
           fi
           # Update the iOS platform to 13.0 or higher
           echo "platform :ios, '13.0'" > ios/Podfile
+          
+          # Add the workspace definition to Podfile if it's not there already
+          echo "workspace 'Runner.xcworkspace'" >> ios/Podfile
 
       # Install CocoaPods for iOS dependencies
       - name: Install CocoaPods
