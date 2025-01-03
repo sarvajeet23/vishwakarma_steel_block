@@ -67,7 +67,7 @@ jobs:
         run: |
           sudo gem install cocoapods
           if [ ! -f ios/Podfile ]; then
-            flutter create .
+            flutter create . --org com.vishwakarma.steel
           fi
           cd ios && pod install && cd ..
 
