@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build & Release
+    name: Build & Release APK
     runs-on: ubuntu-latest
     steps:
       # Checkout the code
@@ -35,18 +35,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # # Check outdated dependencies
-      # - name: Check outdated dependencies
-      #   run: flutter pub outdated
-
-      # # Upgrade dependencies
-      # - name: Upgrade dependencies
-      #   run: flutter pub upgrade
-
-      # # Run tests
-      # - name: Run tests
-      #   run: flutter test
-
       # Build APK with tree-shaking disabled for icons
       - name: Build APK
         run: flutter build apk --release --no-tree-shake-icons
@@ -58,3 +46,36 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*.apk"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
+
+  build-ios:
+    name: Build IPA
+    runs-on: macos-latest
+    steps:
+      # Checkout code
+      - uses: actions/checkout@v3
+
+      # Set up Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      # Install CocoaPods for iOS dependencies
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          pod install --project-directory=ios
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build the IPA file
+      - name: Build IPA
+        run: flutter build ios --release --no-codesign
+
+      # Upload IPA as an artifact
+      - name: Upload IPA
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.ipa
+          path: build/ios/iphoneos/*.ipa
