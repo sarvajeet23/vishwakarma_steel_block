@@ -54,18 +54,20 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v3
 
-      # Install Flutter manually for macOS
-      - name: Install Flutter
-        run: |
-          git clone https://github.com/flutter/flutter.git -b stable
-          export PATH="$PWD/flutter/bin:$PATH"
-          flutter doctor
+      # Set up Flutter (you can remove this step if you want to use the `flutter-action` setup)
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
 
       # Install CocoaPods for iOS dependencies
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
-          pod install --project-directory=ios
+          if [ ! -f ios/Podfile ]; then
+            flutter create .
+          fi
+          cd ios && pod install && cd ..
 
       # Install dependencies
       - name: Install dependencies
