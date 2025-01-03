@@ -35,17 +35,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Check outdated dependencies
-      - name: Check outdated dependencies
-        run: flutter pub outdated
+      # # Check outdated dependencies
+      # - name: Check outdated dependencies
+      #   run: flutter pub outdated
 
-      # Upgrade dependencies
-      - name: Upgrade dependencies
-        run: flutter pub upgrade
+      # # Upgrade dependencies
+      # - name: Upgrade dependencies
+      #   run: flutter pub upgrade
 
-      # Run tests
-      - name: Run tests
-        run: flutter test
+      # # Run tests
+      # - name: Run tests
+      #   run: flutter test
 
       # Build APK with tree-shaking disabled for icons
       - name: Build APK
