@@ -59,6 +59,7 @@ jobs:
         run: |
           git clone https://github.com/flutter/flutter.git -b stable
           echo "$PWD/flutter/bin" >> $GITHUB_PATH
+          export PATH="$PWD/flutter/bin:$PATH"  # Ensure flutter is in PATH
           flutter doctor
 
       # Install CocoaPods for iOS dependencies
