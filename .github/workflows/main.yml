@@ -1,95 +1,38 @@
-name: "Build & Release"
+name: Build and Test Flutter App
 
 on:
-  pull_request:
-    branches:
-      - main
-      - master
   push:
     branches:
       - main
-      - master
-      - develop
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build & Release APK
-    runs-on: ubuntu-latest
+    runs-on: macos-latest  # This will use macOS runner for building iOS apps
     steps:
-      # Checkout the code
       - uses: actions/checkout@v3
 
-      # Set up Java 17
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      # Set up Flutter
-      - uses: subosito/flutter-action@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          architecture: x64
 
-      # Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Build APK with tree-shaking disabled for icons
-      - name: Build APK
-        run: flutter build apk --release --no-tree-shake-icons
-
-      # Publish artifacts as a GitHub Release
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
-          tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.SARVAJEET }}
-
-  build-ios:
-    name: Build IPA
-    runs-on: macos-latest
-    steps:
-      # Checkout the code
-      - uses: actions/checkout@v3
-
-      # Set up Flutter on macOS
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      # Ensure Podfile exists
-      - name: Ensure Podfile exists
-        run: |
-          if [ ! -f ios/Podfile ]; then
-            echo "Creating Podfile"
-            flutter create . --org com.vishwakarma.steel
-          fi
-          # Make sure Firebase dependencies are correctly defined
-          echo "platform :ios, '11.0'" >> ios/Podfile
-          echo "use_frameworks!" >> ios/Podfile
-          echo "workspace 'Runner.xcworkspace'" >> ios/Podfile
-
-      # Install CocoaPods for iOS dependencies
-      - name: Install CocoaPods
+      - name: Ensure CocoaPods is installed
         run: |
           sudo gem install cocoapods
           cd ios
-          pod repo update
           pod install
           cd ..
 
-      # Install dependencies
-      - name: Install Flutter dependencies
-        run: flutter pub get
-
-      # Build the IPA file
-      - name: Build IPA
+      - name: Build iOS app
         run: flutter build ios --release --no-codesign
 
-      # Upload IPA as an artifact
-      - name: Upload IPA
+      - name: Upload IPA (for release)
         uses: actions/upload-artifact@v3
         with:
           name: app-release.ipa
