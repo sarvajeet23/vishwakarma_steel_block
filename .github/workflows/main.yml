@@ -54,11 +54,12 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v3
 
-      # Set up Flutter (you can remove this step if you want to use the `flutter-action` setup)
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: 'stable'
+      # Install Flutter manually for macOS
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git -b stable
+          export PATH="$PWD/flutter/bin:$PATH"
+          flutter doctor
 
       # Install CocoaPods for iOS dependencies
       - name: Install CocoaPods
