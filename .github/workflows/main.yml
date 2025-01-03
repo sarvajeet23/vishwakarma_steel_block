@@ -66,21 +66,23 @@ jobs:
             echo "Creating Podfile"
             flutter create . --org com.vishwakarma.steel
           fi
-          # Update the iOS platform to 13.0 or higher
-          echo "platform :ios, '13.0'" > ios/Podfile
+          echo "platform :ios, '11.0'" > ios/Podfile
+          echo "use_frameworks!" >> ios/Podfile
           
-          # Add the workspace definition to Podfile if it's not there already
-          echo "workspace 'Runner.xcworkspace'" >> ios/Podfile
-
       # Install CocoaPods for iOS dependencies
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
-          cd ios && pod install && cd ..
+          cd ios
+          pod repo update
+          pod install
+          cd ..
 
-      # Install dependencies
-      - name: Install dependencies
-        run: flutter pub get
+      # Clean build artifacts and install dependencies
+      - name: Clean and install dependencies
+        run: |
+          flutter clean
+          flutter pub get
 
       # Build the IPA file
       - name: Build IPA
