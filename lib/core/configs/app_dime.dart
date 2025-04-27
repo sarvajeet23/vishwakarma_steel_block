@@ -374,7 +374,7 @@ class Dime {
       fit: fit,
       loadingBuilder: (context, child, loadingProgress) {
         if (loadingProgress == null) {
-          return child; // Image has loaded
+          return child;
         }
         // Show the custom loading widget (or default one if not provided)
         return loadingWidget != null
