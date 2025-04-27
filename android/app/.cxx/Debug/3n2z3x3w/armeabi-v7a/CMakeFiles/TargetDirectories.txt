@@ -1,0 +1,2 @@
+D:/vishwakarma_steel_block/android/app/.cxx/Debug/3n2z3x3w/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/vishwakarma_steel_block/android/app/.cxx/Debug/3n2z3x3w/armeabi-v7a/CMakeFiles/rebuild_cache.dir

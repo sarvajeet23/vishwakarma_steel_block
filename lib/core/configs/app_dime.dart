@@ -97,9 +97,9 @@ class Dime {
   }
 
 // Shadow Radii
-  static double get smallBlurRadius => height / 500; // Adjust as needed
-  static double get mediumBlurRadius => height / 300; // Adjust as needed
-  static double get largeBlurRadius => height / 150; // Adjust as needed
+  static double get smallBlurRadius => height / 500;
+  static double get mediumBlurRadius => height / 300;
+  static double get largeBlurRadius => height / 150;
 
   static List<BoxShadow> get smallShadow =>
       [boxShadow(blurRadius: smallBlurRadius)];
@@ -248,17 +248,17 @@ class Dime {
 // Circular Container with Inner and Outer Colors and Borders
   static Widget circularContainer({
     required double diameter,
-    Color? innerColor, // Inner color
-    Color? outerColor, // Outer color
-    Color? innerBorderColor, // Inner border color
-    Color? outerBorderColor, // Outer border color
-    double? outerDiameter, // Optional diameter for the outer circle
-    double innerBorderWidth = 0.0, // Inner border width
-    double outerBorderWidth = 0.0, // Outer border width
+    Color? innerColor,
+    Color? outerColor,
+    Color? innerBorderColor,
+    Color? outerBorderColor,
+    double? outerDiameter,
+    double innerBorderWidth = 0.0,
+    double outerBorderWidth = 0.0,
     Widget? child,
   }) {
     return Container(
-      width: outerDiameter ?? diameter, // Use outer diameter if provided
+      width: outerDiameter ?? diameter,
       height: outerDiameter ?? diameter,
       decoration: BoxDecoration(
         color: outerColor ?? Colors.transparent,
@@ -268,7 +268,7 @@ class Dime {
           width: outerBorderWidth,
         ),
       ),
-      alignment: Alignment.center, // Center the child
+      alignment: Alignment.center,
       child: Container(
         width: diameter,
         height: diameter,
@@ -285,8 +285,124 @@ class Dime {
     );
   }
 
+  static Widget circularContainerWithBorder({
+    required double diameter,
+    Color? color,
+    Color? borderColor,
+    double borderWidth = 0.0,
+    Widget? child,
+  }) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      decoration: BoxDecoration(
+        color: color ?? Colors.transparent,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: borderColor ?? Colors.transparent,
+          width: borderWidth,
+        ),
+      ),
+      child: child,
+    );
+  }
+
+  static Widget circularContainerWithBorderAndShadow({
+    required double diameter,
+    Color? color,
+    Color? borderColor,
+    double borderWidth = 0.0,
+    Widget? child,
+  }) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      decoration: BoxDecoration(
+        color: color ?? Colors.transparent,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: borderColor ?? Colors.transparent,
+          width: borderWidth,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4.0,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+  static Widget circularContainerWithShadow({
+    required double diameter,
+    Color? color,
+    Widget? child,
+  }) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      decoration: BoxDecoration(
+        color: color ?? Colors.transparent,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4.0,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+  static Widget networkImage({
+    required String imageUrl,
+    final Widget Function(BuildContext, String, dynamic)? errorWidget,
+    final Widget Function(BuildContext, String, dynamic)? loadingWidget,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.cover,
+  }) {
+    return Image.network(
+      imageUrl,
+      width: width ?? double.infinity,
+      height: height ?? double.infinity,
+      fit: fit,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) {
+          return child; // Image has loaded
+        }
+        // Show the custom loading widget (or default one if not provided)
+        return loadingWidget != null
+            ? loadingWidget(context, imageUrl, loadingProgress)
+            : Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          (loadingProgress.expectedTotalBytes ?? 1)
+                      : null,
+                ),
+              );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        // Show the custom error widget (or default one if not provided)
+        return errorWidget != null
+            ? errorWidget(context, imageUrl, error)
+            : const Icon(Icons.error);
+      },
+    );
+  }
+
   // Print method
-  // ANSI escape code for yellow
+  static void printDebug(String message) {
+    final formattedMessage = '\x1B[33m$message\x1B[0m'; // Yellow color
+    debugPrint(formattedMessage);
+  }
+
   static const String yellow = '\x1B[33m';
   static const String reset = '\x1B[0m';
 
@@ -298,17 +414,14 @@ class Dime {
 
   // Trace method
   static void trace(String message) {
-    final stackTrace = StackTrace.current
-        .toString()
-        .split('\n'); // Get the current stack trace
+    final stackTrace = StackTrace.current.toString().split('\n');
     if (stackTrace.length > 1) {
       // Extract the relevant line for the caller information
       final callerInfo = stackTrace[1].trim();
       final formattedMessage = '$yellow Trace: $message\n$callerInfo$reset';
       debugPrint(formattedMessage);
     } else {
-      final formattedMessage =
-          '$yellow Trace: $message$reset'; // ANSI code for yellow if no stack trace
+      final formattedMessage = '$yellow Trace: $message$reset';
       debugPrint(formattedMessage);
     }
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../core/configs/app_dime.dart';
@@ -23,7 +22,8 @@ class HomePage extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      // backgroundColor: Colors.yellow,
+      backgroundColor:
+          const Color.fromARGB(255, 218, 215, 215).withOpacity(0.1),
       body: SafeArea(
         child: Padding(
           padding:
